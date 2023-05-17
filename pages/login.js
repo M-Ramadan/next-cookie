@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setCookie } from "cookies-next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -24,7 +25,13 @@ export default function Login() {
           UserName,
           Password,
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          setCookie("test", "authToken", "sssss", {
+            path: "/", // specify the cookie path
+            maxAge: 86400, // specify the cookie expiration time in seconds
+          });
+        })
         .then((err) => console.log(err))
         .then(() => formik.resetForm());
     },
