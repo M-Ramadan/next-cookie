@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -9,7 +9,7 @@ const formSchema = Yup.object({
 });
 
 export default function Login() {
-  const isProduction = process.env.NODE_ENV === "production";
+  // const isProduction = process.env.NODE_ENV === "production";
 
   const formik = useFormik({
     initialValues: {
@@ -29,11 +29,8 @@ export default function Login() {
         })
         .then((res) => {
           console.log(res);
-          setCookie("test", "authToken", {
-            path: "/", // specify the cookie path
-            maxAge: 86400, // specify the cookie expiration time in seconds
-            secure: isProduction,
-          });
+          const cookieValue = getCookie("jwt");
+          console.log(cookieValue);
         })
         .then((err) => console.log(err))
         .finally(() => formik.resetForm());
