@@ -9,6 +9,8 @@ const formSchema = Yup.object({
 });
 
 export default function Login() {
+  const isProduction = process.env.NODE_ENV === "production";
+
   const formik = useFormik({
     initialValues: {
       UserName: "",
@@ -30,8 +32,7 @@ export default function Login() {
           setCookie("test", "authToken", "sssss", {
             path: "/", // specify the cookie path
             maxAge: 86400, // specify the cookie expiration time in seconds
-            secure: true,
-            domain: "https://next-cookie-ten.vercel.app/",
+            secure: isProduction,
           });
         })
         .then((err) => console.log(err))
