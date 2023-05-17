@@ -30,10 +30,11 @@ export default function Login() {
           setCookie("test", "authToken", "sssss", {
             path: "/", // specify the cookie path
             maxAge: 86400, // specify the cookie expiration time in seconds
+            secure: true,
           });
         })
         .then((err) => console.log(err))
-        .then(() => formik.resetForm());
+        .finally(() => formik.resetForm());
     },
   });
 
