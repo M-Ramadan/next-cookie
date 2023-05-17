@@ -31,6 +31,7 @@ export default function Login() {
             path: "/", // specify the cookie path
             maxAge: 86400, // specify the cookie expiration time in seconds
             secure: true,
+            domain: "https://next-cookie-ten.vercel.app/",
           });
         })
         .then((err) => console.log(err))
