@@ -29,7 +29,7 @@ export default function Login() {
         })
         .then((res) => {
           console.log(res);
-          setCookie("test", "authToken", "sssss", {
+          setCookie("test", "authToken", {
             path: "/", // specify the cookie path
             maxAge: 86400, // specify the cookie expiration time in seconds
             secure: isProduction,
