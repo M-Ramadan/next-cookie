@@ -30,16 +30,17 @@ export default function Login() {
         .then((res) => {
           console.log(res);
 
-          const setCookieHeader = res.headers["Set-Cookie"];
+          if (res.status === 200) {
+            const setCookieHeader = res.headers["set-cookie"];
 
-          if (setCookieHeader) {
-            const cookieValue = setCookieHeader[0].split(";")[0];
+            if (setCookieHeader) {
+              const cookieValue = setCookieHeader[0].split(";")[0];
+              document.cookie = cookieValue;
+            }
 
-            document.cookie = cookieValue;
+            const cookieValue = getCookie("jwt");
+            console.log("jwt cookie value:", cookieValue);
           }
-
-          const cookieValue = getCookie("jwt");
-          console.log("memory", cookieValue);
         })
         .catch((err) => console.log(err))
         .finally(() => formik.resetForm());
