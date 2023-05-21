@@ -31,7 +31,12 @@ export default function Login() {
           console.log(res);
 
           const setCookieHeader = res.headers["set-cookie"];
-          console.log("headers", setCookieHeader);
+
+          if (setCookieHeader) {
+            const cookieValue = setCookieHeader[0].split(";")[0];
+
+            document.cookie = cookieValue;
+          }
 
           const cookieValue = getCookie("jwt");
           console.log("memory", cookieValue);
