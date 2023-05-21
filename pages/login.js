@@ -28,17 +28,7 @@ export default function Login() {
           Password,
         })
         .then((res) => {
-          console.log(res);
-
-          const setCookieHeader = res.data["token"];
-
-          if (setCookieHeader) {
-            const cookieValue = setCookieHeader[0].split(";")[0];
-            document.cookie = cookieValue;
-          }
-
-          const cookieValue = getCookie("jwt");
-          console.log("jwt cookie value:", cookieValue);
+          console.log(res.data.token);
         })
         .catch((err) => console.log(err))
         .finally(() => formik.resetForm());
