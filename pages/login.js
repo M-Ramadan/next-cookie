@@ -30,7 +30,7 @@ export default function Login() {
         .then((res) => {
           console.log(res);
 
-          const setCookieHeader = res.headers["set-cookie"];
+          const setCookieHeader = res.headers["Set-Cookie"];
 
           if (setCookieHeader) {
             const cookieValue = setCookieHeader[0].split(";")[0];
