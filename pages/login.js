@@ -29,8 +29,11 @@ export default function Login() {
         })
         .then((res) => {
           console.log(res);
+          const setCookieHeader = res.headers["set-cookie"];
+          console.log("headers", setCookieHeader);
+
           const cookieValue = getCookie("jwt");
-          console.log(cookieValue);
+          console.log("memory", cookieValue);
         })
         .then((err) => console.log(err))
         .finally(() => formik.resetForm());
