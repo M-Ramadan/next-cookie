@@ -32,7 +32,8 @@ export default function Login() {
 
           console.log(token);
 
-          document.cookie = `jwt=${token}; path=/`;
+          const secureFlag = location.protocol === "https:" ? "; Secure" : ""; // Add Secure flag if using HTTPS
+          document.cookie = `jwt=${token}; path=/; SameSite=None${secureFlag}`;
         })
         .catch((err) => console.log(err))
         .finally(() => formik.resetForm());
