@@ -28,7 +28,11 @@ export default function Login() {
           Password,
         })
         .then((res) => {
-          console.log(res.data.token);
+          const { token } = res.data;
+
+          console.log(token);
+
+          document.cookie = `jwt=${token}; path=/`;
         })
         .catch((err) => console.log(err))
         .finally(() => formik.resetForm());
